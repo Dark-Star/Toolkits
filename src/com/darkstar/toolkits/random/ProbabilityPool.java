@@ -1,4 +1,4 @@
-package com.darkstar.toolkits;
+package com.darkstar.toolkits.random;
 
 import java.util.Random;
 

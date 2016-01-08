@@ -19,6 +19,8 @@ import java.io.IOException;
 public class Utils {
     private static final String TAG = Utils.class.getSimpleName();
 
+    public static final String CHARSET_UTF8 = "UTF-8";
+
     public static void waitWithoutInterrupt(Object object) {
         try {
             object.wait();

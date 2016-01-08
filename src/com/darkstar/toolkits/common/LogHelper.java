@@ -1,6 +1,9 @@
 package com.darkstar.toolkits.common;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 /**
  * Created by levy on 2015/12/21.
@@ -56,5 +59,25 @@ public class LogHelper {
     public static class TagInfo {
         public String tag;
         public String priority;
+    }
+
+    /**
+     * read cause from throwable
+     * @param ex throwable
+     * @return result of cause
+     */
+    public static String readThrowable(Throwable ex) {
+        Writer writer = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(writer);
+        ex.printStackTrace(printWriter);
+        Throwable cause = ex.getCause();
+        while (cause != null) {
+            cause.printStackTrace(printWriter);
+            cause = cause.getCause();
+        }
+        String ret = writer.toString();
+        Utils.closeSilently(printWriter);
+        Utils.closeSilently(writer);
+        return ret;
     }
 }
